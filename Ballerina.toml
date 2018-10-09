@@ -1,0 +1,7 @@
+[project]
+org-name = "vamosapi"
+version = "0.8.11"
+authors = ["copenat"]
+repository = "https://github.com/copenat/package-atlassian-jira.git"
+keywords = ["ballerina", "jira","jira7", "atlassian"]
+license = "Apache-2.0"
