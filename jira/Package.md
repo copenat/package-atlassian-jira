@@ -7,25 +7,27 @@ accounts, and issues through the JIRA REST API. It handles basic authentication.
 
 **JIRA Project Operations**
 
-The `wso2/jira` package contains operations to create new JIRA projects, update or delete existing projects, and get all 
+The `vamosapi/jira` package contains operations to create new JIRA projects, update or delete existing projects, and get all 
 the information using either the ID or key of the project. It also contains operations for adding or removing users and 
 groups related to a project role, viewing user account details of the project lead, viewing assignable issue types for a 
 given project, etc.
 
 **JIRA Project Category Operations**
 
-The `wso2/jira` package contains operations that get all available project categories, delete existing categories, and 
+The `vamosapi/jira` package contains operations that get all available project categories, delete existing categories, and 
 create new project categories.
 
 **JIRA Project Component Operations**
 
-The `wso2/jira` package contains operations that get all details of a given project component, delete existing 
+The `vamosapi/jira` package contains operations that get all details of a given project component, delete existing 
 components, create a new project component related to a specific project, etc.
 
 **JIRA Issue Operations**
 
-The `wso2/jira` package contains operations that get all the details of a given issue using the issue key, delete existing 
-issues, create new issues, etc.
+The `vamosapi/jira` package contains operations that get all the details of a given issue using the issue key, delete existing 
+issues, create new issues.
+Newly added by VamosAPI : add comments, add remote links.
+
 
 ## Compatibility
 |                    |    Version     |  
@@ -34,9 +36,9 @@ issues, create new issues, etc.
 | JIRA REST API      |    7.2.2       |  
 
 ## Sample
-First, import the `wso2/jira7` package into the Ballerina project.
+First, import the `vamosapi/jira7` package into the Ballerina project.
 ```ballerina
-import wso2/jira7;
+import vamosapi/jira7;
 ```
 **Obtaining Credentials to Run the Sample**
 
