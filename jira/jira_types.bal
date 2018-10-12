@@ -393,3 +393,41 @@ public type IssueComment record {
     string updatedDate;
 };
 
+documentation{Record to hold info for creating an issue link. In Jira title and then the summary is displayed. It is
+crossed out if the status resolved is true. If 'relationship' is not stated then remote link is used. Mandatory fields 
+below are marked with *.
+
+    F{{issue_id}}* id (KEY-XXX) of issue that this link will be assoc with
+    F{{global_id}} id
+    F{{url}}* Url of remote link
+    F{{title}}* Title of the remote link
+    F{{summary}}* Summary of the link
+    F{{application_type}} application type 
+    F{{application_name}} name of application linking to
+    F{{relationship}} eg 'causes'. If not stated then remote link is assumed
+    F{{icon_url}} url of the icon to be displayed on Jira screen for link
+    F{{icon_title}} title of icon for this link
+    F{{resolved}} Is this linked issue resolved or not (true/false). Default to false.
+    F{{status_icon_url}} url of the icon to be used to display the status
+    F{{status_icon_title}} title of the icon to be used to display the status
+    F{{status_icon_link}} Link to the closed issue
+}
+public type IssueLinkRequest record {
+    string issue_id;
+    string global_id;
+    string url;
+    string title;
+    string summary;
+    string application_type;
+    string application_name;
+    string relationship;
+    string icon_url;
+    string icon_title;
+    boolean resolved;
+    string status_icon_url;
+    string status_icon_title;
+    string status_icon_link;
+    !...
+};
+
+

@@ -258,3 +258,26 @@ function jsonToIssueComment(json jcomment) returns IssueComment {
     return comment;
 }
 
+function issueLinkRequestToJson(IssueLinkRequest source) returns json {
+
+    json target = {"application":{},"object":{"icon":{},"status":{"icon":{}}}};
+
+    target.global_id = source.url != EMPTY_STRING ? source.global_id : null;
+    target.application["type"] = source.application_type != EMPTY_STRING ? source.application_type : null;
+    target.application.name = source.application_name != EMPTY_STRING ? source.application_name : null;
+
+    target["object"].url = source.url != EMPTY_STRING ? source.url : null;
+    target["object"].title = source.title != EMPTY_STRING ? source.title : null;
+    target["object"].summary = source.summary != EMPTY_STRING ? source.summary : null;
+    target["object"].icon.url16x16 = source.icon_url != EMPTY_STRING ? source.icon_url : null;
+    target["object"].icon.title = source.icon_title != EMPTY_STRING ? source.icon_title : null;
+
+    target["object"].status.resolved = source.resolved == true ? true : false;
+    target["object"].status.icon.url = source.status_icon_url != EMPTY_STRING ? source.status_icon_url : null;
+    target["object"].status.icon.title = source.status_icon_title != EMPTY_STRING ? source.status_icon_title : null;
+    target["object"].status.icon.link = source.status_icon_link != EMPTY_STRING ? source.status_icon_link : null;
+    //target.fields.assignee = source.assigneeName != EMPTY_STRING ? {name:source.assigneeName} : null;
+
+    return target;
+}
+

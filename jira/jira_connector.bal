@@ -103,6 +103,9 @@ public type JiraConnector object {
 
     public function addCommentToIssue(string issueIdOrKey, IssueComment comment)
                         returns boolean|JiraConnectorError;
+
+    public function createIssueLink(IssueLinkRequest link) 
+                        returns boolean|JiraConnectorError;
 };
 
 documentation{Returns an array of all projects summaries which are visible for the currently logged in user who has
@@ -899,4 +902,33 @@ function JiraConnector::addCommentToIssue(string issueIdOrKey, IssueComment comm
         json jsonResponse => return true;
     }
 }
+
+documentation{Adds a comment to a Jira Issue.
+    P{{link}} the details of the comment to be added
+    R{{^"boolean"}} returns true if the process is successful
+    R{{JiraConnectorError}} 'JiraConnectorError' record
+}
+function JiraConnector::createIssueLink(IssueLinkRequest link) returns boolean|JiraConnectorError {
+
+    endpoint http:Client jiraHttpClientEP = self.jiraHttpClient;
+    http:Request linkReq = new;
+
+    json jsonPayload = issueLinkRequestToJson(link);
+    log:printDebug("Remote Link payload : " + jsonPayload.toString());
+    linkReq.setJsonPayload(jsonPayload);
+    string url = "/issue/" + link.issue_id +"/remotelink";
+    log:printDebug("Remote Link url : " + url);
+
+    var httpResponseOut = jiraHttpClientEP->post(url, linkReq);
+    //Evaluate http response for connection and server errors
+    var jsonResponseOut = getValidatedResponse(httpResponseOut);
+
+    match jsonResponseOut {
+        JiraConnectorError e => return e;
+        json jsonResponse => return true;
+    }
+
+}
+
+
 
